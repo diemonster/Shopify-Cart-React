@@ -42,15 +42,22 @@
       strings: {
         addToCart: {{ 'products.product.add_to_cart' | t | json }},
         soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }}
+        unavailable: {{ 'products.product.unavailable' | t | json }},
       },
-      moneyFormat: {{ shop.money_format | json }}
+      moneyFormat: {{ shop.money_format | json }},
     };
 
     {% if template.directory == 'customers' %}
       theme.allCountryOptionTags = {{ all_country_option_tags | json }};
     {% endif %}
   </script>
+
+  <!-- Get some React -->
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+
+  <!-- find my component -->
+  <script src="ReactRoot.js"></script>
 
   {% include 'script-tags', layout: 'theme' %}
 
@@ -65,9 +72,25 @@
 
   {% section 'header' %}
 
+  <!--
   <main role="main" id="MainContent">
     {{ content_for_layout }}
   </main>
+  -->
+
+  <h1>React element should appear below this</h1>
+  <div id="reactmebro"></div>
+  <h1>React element should appear above this</h1>
+
+  <!-- Render React -->
+  <script>
+    const e = React.createElement;
+
+    ReactDOM.render(
+      e('h2', null, 'DO U EVEN REACT BRO'),
+      document.getElementById('reactmebro')
+    );
+  </script>
 
   {% section 'footer' %}
 
